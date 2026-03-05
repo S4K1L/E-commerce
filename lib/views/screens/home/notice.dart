@@ -1,7 +1,5 @@
 // ignore_for_file: unnecessary_null_comparison
-
 import 'package:bdm/controllers/user_controller.dart';
-import 'package:bdm/utils/formatter.dart';
 import 'package:bdm/views/base/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -93,27 +91,27 @@ class Notice extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          height: 22,
-                          padding: EdgeInsets.symmetric(horizontal: 8),
-                          decoration: BoxDecoration(
-                            color: Theme.of(context).primaryColor,
-                            borderRadius: BorderRadius.only(
-                              topLeft: Radius.elliptical(12, 12),
-                              bottomRight: Radius.elliptical(12, 12),
-                            ),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                Formatter.durationFormatter(
-                                  DateTime.now().difference(i.createdAt),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
+                        // Container(
+                        //   height: 22,
+                        //   padding: EdgeInsets.symmetric(horizontal: 8),
+                        //   decoration: BoxDecoration(
+                        //     color: Theme.of(context).primaryColor,
+                        //     borderRadius: BorderRadius.only(
+                        //       topLeft: Radius.elliptical(12, 12),
+                        //       bottomRight: Radius.elliptical(12, 12),
+                        //     ),
+                        //   ),
+                        //   child: Column(
+                        //     mainAxisAlignment: MainAxisAlignment.center,
+                        //     children: [
+                        //       Text(
+                        //         Formatter.durationFormatter(
+                        //           DateTime.now().difference(i.createdAt),
+                        //         ),
+                        //       ),
+                        //     ],
+                        //   ),
+                        // ),
                       ],
                     ),
                 ],

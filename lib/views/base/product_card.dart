@@ -185,6 +185,7 @@ class ProductCard extends StatelessWidget {
                 final prod = Get.find<ProductController>();
 
                 bool stockOut = product.outOfStock;
+                bool stockQuantity = product.stockQuantity < 1;
                 bool inCart = prod.cartContains(product) != 0;
 
                 return Positioned(
@@ -294,6 +295,8 @@ class ProductCard extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color:
                                     stockOut
+                                        ? Colors.red
+                                        : stockQuantity
                                         ? Colors.yellow
                                         : inCart
                                         ? Colors.white.withValues(alpha: 0.24)
@@ -312,6 +315,12 @@ class ProductCard extends StatelessWidget {
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
+                                    color:
+                                        stockOut
+                                            ? Colors.white
+                                            : stockQuantity
+                                            ? Colors.black
+                                            : Colors.white,
                                   ),
                                 ),
                               ),

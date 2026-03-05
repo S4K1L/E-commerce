@@ -334,7 +334,7 @@ class _CartState extends State<Cart> {
                         ),
                         Expanded(
                           child: Text(
-                            "cart_notice_1".tr,
+                            "BDM আপনাদের সঠিক সময়ে পণ্য ডেলিভারি দিতে প্রতিশ্রুতিবদ্ধ, তাই যত দ্রুত সম্ভব দয়া করে ডেলিভারি ভাইকে ছেড়ে দিবেন।",
                             style: TextStyle(
                               fontSize: 12,
                               color:
@@ -360,7 +360,7 @@ class _CartState extends State<Cart> {
                         ),
                         Expanded(
                           child: Text(
-                            "cart_notice_2".tr,
+                            "অডারকৃত পণ্য ফেরৎ দিলে ডিসকাউন্ট প্রযোজ্য নহে। সর্বোচ্চ ২৫% পণ্য ফেরৎ প্রযোজ্য।",
                             style: TextStyle(
                               fontSize: 12,
                               color:
@@ -386,7 +386,7 @@ class _CartState extends State<Cart> {
                         ),
                         Expanded(
                           child: Text(
-                            "cart_notice_3".tr,
+                            "BDM সিস্টেমে বকেয়া রেখে পণ্য বিক্রির ব্যবস্থা নেই। তাই এমন বিব্রতকর প্রস্তাব না দেবার জন্য বিশেষভাবে অনুরোধ করছি।",
                             style: TextStyle(
                               fontSize: 12,
                               color:
@@ -412,7 +412,7 @@ class _CartState extends State<Cart> {
                         ),
                         Expanded(
                           child: Text(
-                            "cart_notice_4".tr,
+                            "সকাল ১০টার আগে অডার পাঠিয়ে দিবেন। শুক্রবার ডেলিভারি কার্যক্রম বন্ধ থাকিবে।",
                             style: TextStyle(
                               fontSize: 12,
                               color:
