@@ -4,8 +4,19 @@ import 'package:bdm/views/base/custom_app_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class Notice extends StatelessWidget {
+class Notice extends StatefulWidget {
   const Notice({super.key});
+
+  @override
+  State<Notice> createState() => _NoticeState();
+}
+
+class _NoticeState extends State<Notice> {
+  @override
+  void initState() {
+    super.initState();
+    Get.find<UserController>().getNotices();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +29,15 @@ class Notice extends StatelessWidget {
             child: Obx(() {
               final user = Get.find<UserController>();
 
+              if (user.isLoading.value && user.notices.isEmpty) {
+                return const Center(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: 100),
+                    child: CircularProgressIndicator(),
+                  ),
+                );
+              }
+
               return Column(
                 spacing: 8,
                 children: [
@@ -25,7 +45,7 @@ class Notice extends StatelessWidget {
                   if (user.notices.isEmpty)
                     Container(
                       width: double.infinity,
-                      padding: EdgeInsets.symmetric(
+                      padding: const EdgeInsets.symmetric(
                         vertical: 70,
                         horizontal: 36,
                       ),
@@ -40,7 +60,7 @@ class Notice extends StatelessWidget {
                           BoxShadow(
                             color: Theme.of(context).shadowColor,
                             blurRadius: 10,
-                            offset: Offset(0, 4),
+                            offset: const Offset(0, 4),
                           ),
                         ],
                       ),
@@ -61,7 +81,7 @@ class Notice extends StatelessWidget {
                       children: [
                         Container(
                           width: double.infinity,
-                          padding: EdgeInsets.symmetric(
+                          padding: const EdgeInsets.symmetric(
                             vertical: 70,
                             horizontal: 36,
                           ),
@@ -76,7 +96,7 @@ class Notice extends StatelessWidget {
                               BoxShadow(
                                 color: Theme.of(context).shadowColor,
                                 blurRadius: 10,
-                                offset: Offset(0, 4),
+                                offset: const Offset(0, 4),
                               ),
                             ],
                           ),
@@ -84,34 +104,13 @@ class Notice extends StatelessWidget {
                             child: Text(
                               i.message,
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontWeight: FontWeight.w500,
                                 fontSize: 20,
                               ),
                             ),
                           ),
                         ),
-                        // Container(
-                        //   height: 22,
-                        //   padding: EdgeInsets.symmetric(horizontal: 8),
-                        //   decoration: BoxDecoration(
-                        //     color: Theme.of(context).primaryColor,
-                        //     borderRadius: BorderRadius.only(
-                        //       topLeft: Radius.elliptical(12, 12),
-                        //       bottomRight: Radius.elliptical(12, 12),
-                        //     ),
-                        //   ),
-                        //   child: Column(
-                        //     mainAxisAlignment: MainAxisAlignment.center,
-                        //     children: [
-                        //       Text(
-                        //         Formatter.durationFormatter(
-                        //           DateTime.now().difference(i.createdAt),
-                        //         ),
-                        //       ),
-                        //     ],
-                        //   ),
-                        // ),
                       ],
                     ),
                 ],

@@ -283,6 +283,34 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                         ],
                       ),
+                      if (widget.order.specialBonus > 0 &&
+                          widget.order.specialBonusPercentage > 0)
+                        Row(
+                          children: [
+                            Text(
+                              "${"special_discount".tr} (${widget.order.specialBonusPercentage.toInt()}%)",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall?.color,
+                              ),
+                            ),
+                            Spacer(),
+                            Text(
+                              "৳${widget.order.specialBonus.toInt()}",
+                              style: TextStyle(
+                                fontSize: 14,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodySmall?.color,
+                              ),
+                            ),
+                          ],
+                        ),
+
                       Row(
                         children: [
                           Text(
@@ -300,7 +328,8 @@ class _OrderDetailsState extends State<OrderDetails> {
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
-                              color: Theme.of(context).primaryColor,
+                              color:
+                                  Theme.of(context).textTheme.bodyLarge?.color,
                             ),
                           ),
                         ],
@@ -309,189 +338,197 @@ class _OrderDetailsState extends State<OrderDetails> {
                   ),
                 ),
                 const SizedBox(height: 12),
-                Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).cardColor,
-                    borderRadius: BorderRadius.all(Radius.circular(8)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Theme.of(context).shadowColor,
-                        blurRadius: 10,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    spacing: 12,
-                    children: [
-                      Text(
-                        "Return",
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Theme.of(context).textTheme.bodyLarge?.color,
+                if (widget.order.totalReturnAmount > 0)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 16),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).cardColor,
+                      borderRadius: BorderRadius.all(Radius.circular(8)),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Theme.of(context).shadowColor,
+                          blurRadius: 10,
+                          offset: Offset(0, 4),
                         ),
-                      ),
-                      for (var i in widget.order.returnItems)
-                        Row(
-                          children: [
-                            Container(
-                              height: 40,
-                              width: 40,
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).dividerColor,
-                              ),
-                              child: ClipRRect(
-                                borderRadius: BorderRadiusGeometry.circular(99),
-                                child: Center(
-                                  child:
-                                      i.productImage != null
-                                          ? CustomNetworkedImage(
-                                            url:
-                                                ApiService().baseUrl +
-                                                i.productImage!,
-                                            height: 32,
-                                            width: 32,
-                                          )
-                                          : Icon(Icons.medication_rounded),
+                      ],
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      spacing: 12,
+                      children: [
+                        Text(
+                          "Return",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Theme.of(context).textTheme.bodyLarge?.color,
+                          ),
+                        ),
+                        for (var i in widget.order.returnItems)
+                          Row(
+                            children: [
+                              Container(
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Theme.of(context).dividerColor,
+                                ),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadiusGeometry.circular(
+                                    99,
+                                  ),
+                                  child: Center(
+                                    child:
+                                        i.productImage != null
+                                            ? CustomNetworkedImage(
+                                              url:
+                                                  ApiService().baseUrl +
+                                                  i.productImage!,
+                                              height: 32,
+                                              width: 32,
+                                            )
+                                            : Icon(Icons.medication_rounded),
+                                  ),
                                 ),
                               ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              flex: 6,
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    i.productName,
+                              const SizedBox(width: 12),
+                              Expanded(
+                                flex: 6,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      i.productName,
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w500,
+                                        fontSize: 14,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                    const SizedBox(height: 4),
+                                    Text(
+                                      i.companyName ?? i.productName,
+                                      style: TextStyle(
+                                        color:
+                                            Theme.of(
+                                              context,
+                                            ).textTheme.bodySmall?.color,
+                                        fontSize: 10,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              Spacer(),
+                              Container(
+                                height: 28,
+                                width: 28,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).dividerColor,
+                                  borderRadius: BorderRadius.only(
+                                    topLeft: Radius.circular(24),
+                                    bottomLeft: Radius.circular(24),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "-",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 2),
+                              Container(
+                                constraints: BoxConstraints(
+                                  minWidth: 24,
+                                  maxHeight: 24,
+                                ),
+                                padding: EdgeInsets.symmetric(horizontal: 4),
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).primaryColor,
+                                  borderRadius: BorderRadius.circular(99),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    i.quantity.toString(),
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 2),
+                              Container(
+                                height: 28,
+                                width: 28,
+                                decoration: BoxDecoration(
+                                  color: Theme.of(context).dividerColor,
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(24),
+                                    bottomRight: Radius.circular(24),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "+",
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(width: 16),
+                              Expanded(
+                                flex: 2,
+                                child: FittedBox(
+                                  fit: BoxFit.scaleDown,
+                                  child: Text(
+                                    "৳${i.sellingPrice.toInt()}",
                                     style: TextStyle(
                                       fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                      overflow: TextOverflow.ellipsis,
+                                      fontSize: 16,
                                     ),
                                   ),
-                                  const SizedBox(height: 4),
-                                  Text(
-                                    i.companyName ?? i.productName,
-                                    style: TextStyle(
-                                      color:
-                                          Theme.of(
-                                            context,
-                                          ).textTheme.bodySmall?.color,
-                                      fontSize: 10,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        Row(
+                          children: [
+                            Text(
+                              "total".tr,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.color,
                               ),
                             ),
                             Spacer(),
-                            Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).dividerColor,
-                                borderRadius: BorderRadius.only(
-                                  topLeft: Radius.circular(24),
-                                  bottomLeft: Radius.circular(24),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "-",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 2),
-                            Container(
-                              constraints: BoxConstraints(
-                                minWidth: 24,
-                                maxHeight: 24,
-                              ),
-                              padding: EdgeInsets.symmetric(horizontal: 4),
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).primaryColor,
-                                borderRadius: BorderRadius.circular(99),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  i.quantity.toString(),
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 2),
-                            Container(
-                              height: 28,
-                              width: 28,
-                              decoration: BoxDecoration(
-                                color: Theme.of(context).dividerColor,
-                                borderRadius: BorderRadius.only(
-                                  topRight: Radius.circular(24),
-                                  bottomRight: Radius.circular(24),
-                                ),
-                              ),
-                              child: Center(
-                                child: Text(
-                                  "+",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14,
-                                  ),
-                                ),
-                              ),
-                            ),
-                            const SizedBox(width: 16),
-                            Expanded(
-                              flex: 2,
-                              child: FittedBox(
-                                fit: BoxFit.scaleDown,
-                                child: Text(
-                                  "৳${i.sellingPrice.toInt()}",
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 16,
-                                  ),
-                                ),
+                            Text(
+                              "৳${widget.order.totalReturnAmount.toInt()}",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color:
+                                    Theme.of(
+                                      context,
+                                    ).textTheme.bodyLarge?.color,
                               ),
                             ),
                           ],
                         ),
-                      Row(
-                        children: [
-                          Text(
-                            "total".tr,
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color:
-                                  Theme.of(context).textTheme.bodyLarge?.color,
-                            ),
-                          ),
-                          Spacer(),
-                          Text(
-                            "৳${widget.order.totalReturnAmount.toInt()}",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Theme.of(context).primaryColor,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
                 const SizedBox(height: 66),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 6),

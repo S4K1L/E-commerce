@@ -19,13 +19,13 @@ class NoticeModel {
 
   factory NoticeModel.fromJson(Map<String, dynamic> json) {
     return NoticeModel(
-      id: json['id'],
-      title: json['title'],
-      message: json['message'],
-      createdAt: DateTime.parse(json['created_at']),
-      updatedAt: DateTime.parse(json['updated_at']),
-      isActive: json['is_active'],
-      createdBy: json['created_by'],
+      id: json['id'] ?? 0,
+      title: json['title'] ?? '',
+      message: json['message'] ?? '',
+      createdAt: DateTime.tryParse(json['created_at'] ?? "") ?? DateTime.now(),
+      updatedAt: DateTime.tryParse(json['updated_at'] ?? "") ?? DateTime.now(),
+      isActive: json['is_active'] ?? true,
+      createdBy: json['created_by'] ?? 0,
     );
   }
 

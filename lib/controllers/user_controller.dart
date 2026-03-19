@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:bdm/models/notice_model.dart';
 import 'package:bdm/models/notification_model.dart';
 import 'package:bdm/models/user.dart';
@@ -127,24 +128,38 @@ class UserController extends GetxController {
     }
   }
 
-  Future<String> _getNotices() async {
+  Future<String> getNotices() async {
+    isLoading.value = true;
     try {
       final response = await api.get("/announcement/notices/", authReq: true);
       final body = jsonDecode(response.body);
 
       if (response.statusCode == 200) {
-        notices.clear();
         final data = body['data'];
+        List<NoticeModel> tempNotices = [];
 
-        for (var i in data) {
-          notices.add(NoticeModel.fromJson(i));
+        if (data is List) {
+          for (var i in data) {
+            try {
+              tempNotices.add(NoticeModel.fromJson(i));
+            } catch (e) {
+              debugPrint("❗ Notice parsing error for item $i: $e");
+            }
+          }
+          notices.assignAll(tempNotices);
+        } else {
+          debugPrint("❗ Notice data is not a list: $data");
         }
+
         return "success";
       } else {
         return body['message'] ?? "Connection Error";
       }
     } catch (e) {
+      debugPrint("❗ Unexpected error in getNotices: $e");
       return "Unexpected error: ${e.toString()}";
+    } finally {
+      isLoading.value = false;
     }
   }
 
@@ -152,11 +167,11 @@ class UserController extends GetxController {
     _notificationTimer?.cancel();
 
     _getNotifications();
-    _getNotices();
+    getNotices();
 
     _notificationTimer = Timer.periodic(notificationRefreshTime, (timer) {
       _getNotifications();
-      _getNotices();
+      getNotices();
     });
   }
 
