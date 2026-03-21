@@ -21,6 +21,7 @@ class ProductController extends GetxController {
   RxList<GenericModel> generics = RxList.empty();
   RxList<GenericModel> selectedGenerics = RxList.empty();
   RxList<String> orderingAgain = RxList.empty();
+  RxList<String> cartCondition = <String>[].obs;
   RxMap<ProductModel, int> cart = RxMap();
 
   RxBool isLoading = RxBool(false);
@@ -35,6 +36,39 @@ class ProductController extends GetxController {
   void onInit() {
     super.onInit();
     loadCartFromCache();
+  }
+
+  Future<String> getCondition() async {
+    try {
+      isLoading(true);
+      final response = await api.get(
+        "/settings/privacy-policy/",
+        authReq: true,
+      );
+
+      final body = jsonDecode(response.body);
+
+      if (response.statusCode == 200 || response.statusCode == 201) {
+        final content = body['data'][0]['content'] ?? "";
+
+        final List<String> parsedList =
+            content
+                .toString()
+                .split("\n")
+                .map((String e) => e.replaceAll("#", "").trim())
+                .where((String e) => e.isNotEmpty)
+                .toList();
+
+        cartCondition.assignAll(parsedList);
+        return "success";
+      } else {
+        return body['message'] ?? response.statusCode.toString();
+      }
+    } catch (e) {
+      return e.toString();
+    } finally {
+      isLoading(false);
+    }
   }
 
   Future<String> fetchProductsByCategory(String id) async {

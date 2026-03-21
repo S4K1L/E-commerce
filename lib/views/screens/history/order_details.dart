@@ -299,7 +299,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                             Spacer(),
                             Text(
-                              "৳${widget.order.specialBonus.toInt()}",
+                              "- ৳${widget.order.specialBonus.toInt()}",
                               style: TextStyle(
                                 fontSize: 14,
                                 color:

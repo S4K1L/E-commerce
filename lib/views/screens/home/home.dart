@@ -34,6 +34,7 @@ class _HomeState extends State<Home> {
   void initState() {
     super.initState();
     getProducts();
+    product.getCondition();
     Get.find<ServiceController>().checkServiceAvailability();
   }
 

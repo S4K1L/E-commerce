@@ -159,7 +159,7 @@ class _LoginState extends State<Login> {
                           height: 20,
                           width: 20,
                           child: Checkbox(
-                            activeColor: Theme.of(context).primaryColor,
+                            activeColor: Colors.green,
                             value: rememberMe,
                             onChanged: (val) {
                               setState(() {
