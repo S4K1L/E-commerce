@@ -253,7 +253,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                           Spacer(),
                           Text(
-                            "৳${widget.order.totalAmount.toInt()}",
+                            "৳${widget.order.totalAmount.toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 14,
                               color:
@@ -288,7 +288,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                         Row(
                           children: [
                             Text(
-                              "${"special_discount".tr} (${widget.order.specialBonusPercentage.toInt()}%)",
+                              "${"special_discount".tr} (${widget.order.specialBonusPercentage.toStringAsFixed(2)}%)",
                               style: TextStyle(
                                 fontSize: 14,
                                 color:
@@ -299,7 +299,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                             Spacer(),
                             Text(
-                              "- ৳${widget.order.specialBonus.toInt()}",
+                              "- ৳${widget.order.specialBonus.toStringAsFixed(2)}",
                               style: TextStyle(
                                 fontSize: 14,
                                 color:
@@ -324,7 +324,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                           Spacer(),
                           Text(
-                            "৳${widget.order.finalAmount.toInt()}",
+                            "৳${widget.order.finalAmount.toStringAsFixed(2)}",
                             style: TextStyle(
                               fontWeight: FontWeight.w600,
                               fontSize: 18,
@@ -514,7 +514,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                             ),
                             Spacer(),
                             Text(
-                              "৳${widget.order.totalReturnAmount.toInt()}",
+                              "৳${widget.order.totalReturnAmount.toStringAsFixed(2)}",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,
