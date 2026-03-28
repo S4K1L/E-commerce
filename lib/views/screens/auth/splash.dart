@@ -43,13 +43,10 @@ class _SplashState extends State<Splash> with SingleTickerProviderStateMixin {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Hero(
-              tag: "logo",
-              child: Image.asset(
-                "assets/images/logo.png",
-                height: _animation.value,
-                width: _animation.value,
-              ),
+            Image.asset(
+              "assets/images/logo.png",
+              height: _animation.value,
+              width: _animation.value,
             ),
             const SizedBox(height: 12),
             Text(

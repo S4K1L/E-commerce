@@ -17,22 +17,19 @@ class Welcome extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Hero(
-            tag: "logo",
-            child: Obx(() {
-              final service = Get.find<ServiceController>();
-              if (service.serviceInfo.value != null) {
-                return CustomNetworkedImage(
-                  url: ApiService.getImage(service.serviceInfo.value!.logo),
-                  height: 120,
-                  width: 120,
-                  baseColor: Colors.transparent,
-                  errorWidget: Container(),
-                );
-              }
-              return Container();
-            }),
-          ),
+          Obx(() {
+            final service = Get.find<ServiceController>();
+            if (service.serviceInfo.value != null) {
+              return CustomNetworkedImage(
+                url: ApiService.getImage(service.serviceInfo.value!.logo),
+                height: 120,
+                width: 120,
+                baseColor: Colors.transparent,
+                errorWidget: Container(),
+              );
+            }
+            return Container();
+          }),
           const SizedBox(height: 80, width: double.infinity),
           Text(
             "welcome".tr,

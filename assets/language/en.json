@@ -42,6 +42,7 @@
   "shop_address_hint": "Enter your address",
   "shop_area": "Area",
   "shop_area_hint": "Enter your area",
+  "shop_area_select_suggestion": "Choose a valid area from the suggestions, or type the exact area name.",
   "approval": "Waiting for Admin Approval",
   "approval_details": "We’ve received your information. Our admin team is verifying your details and will activate your account soon.",
   "Contact To Admin": "Contact To Admin",

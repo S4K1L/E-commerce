@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         return GetBuilder<LocalizationController>(
           builder: (localizeController) {
             return GetMaterialApp(
+              navigatorKey: Get.key,
               title: "BDM",
               debugShowCheckedModeBanner: false,
               // theme: themeController.darkTheme ? dark() : light(),

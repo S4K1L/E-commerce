@@ -74,24 +74,21 @@ class _LoginState extends State<Login> {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const SizedBox(height: 24),
-                  Hero(
-                    tag: "logo",
-                    child: Obx(() {
-                      final service = Get.find<ServiceController>();
-                      if (service.serviceInfo.value != null) {
-                        return CustomNetworkedImage(
-                          url: ApiService.getImage(
-                            service.serviceInfo.value!.logo,
-                          ),
-                          height: 120,
-                          width: 120,
-                          baseColor: Colors.transparent,
-                          errorWidget: Container(),
-                        );
-                      }
-                      return Container();
-                    }),
-                  ),
+                  Obx(() {
+                    final service = Get.find<ServiceController>();
+                    if (service.serviceInfo.value != null) {
+                      return CustomNetworkedImage(
+                        url: ApiService.getImage(
+                          service.serviceInfo.value!.logo,
+                        ),
+                        height: 120,
+                        width: 120,
+                        baseColor: Colors.transparent,
+                        errorWidget: Container(),
+                      );
+                    }
+                    return Container();
+                  }),
                   const SizedBox(height: 24, width: double.infinity),
                   Align(
                     alignment: Alignment.centerLeft,

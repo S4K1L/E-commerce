@@ -88,24 +88,21 @@ class _CustomAppBarState extends State<CustomAppBar> {
                   //   ],
                   // ),
                   // ,
-                  Hero(
-                    tag: "logo",
-                    child: Obx(() {
-                      final service = Get.find<ServiceController>();
-                      if (service.serviceInfo.value != null) {
-                        return CustomNetworkedImage(
-                          url: ApiService.getImage(
-                            service.serviceInfo.value!.logo,
-                          ),
-                          height: 18,
-                          width: 18,
-                          baseColor: Colors.transparent,
-                          errorWidget: Container(),
-                        );
-                      }
-                      return Container();
-                    }),
-                  ),
+                  Obx(() {
+                    final service = Get.find<ServiceController>();
+                    if (service.serviceInfo.value != null) {
+                      return CustomNetworkedImage(
+                        url: ApiService.getImage(
+                          service.serviceInfo.value!.logo,
+                        ),
+                        height: 18,
+                        width: 18,
+                        baseColor: Colors.transparent,
+                        errorWidget: Container(),
+                      );
+                    }
+                    return Container();
+                  }),
                   const SizedBox(width: 2),
                   Obx(
                     () => Text(
