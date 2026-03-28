@@ -175,9 +175,12 @@ class ProductCard extends StatelessWidget {
                     ),
                   ),
                   child: Center(
-                    child: FittedBox(
-                      fit: BoxFit.scaleDown,
-                      child: Text("${product.discountPercent}% ${"off".tr}"),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      child: FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text("${product.discountPercent}% ${"off".tr}"),
+                      ),
                     ),
                   ),
                 ),

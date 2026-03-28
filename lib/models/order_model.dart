@@ -3,6 +3,7 @@ class OrderModel {
   final String invoiceNumber;
   final int userId;
   final double totalAmount;
+  final double subtotalAmount;
   final double deliveryCharge;
   final double specialBonus;
   final double specialBonusPercentage;
@@ -19,6 +20,7 @@ class OrderModel {
     required this.invoiceNumber,
     required this.userId,
     required this.totalAmount,
+    required this.subtotalAmount,
     required this.deliveryCharge,
     required this.specialBonus,
     required this.specialBonusPercentage,
@@ -37,6 +39,7 @@ class OrderModel {
       invoiceNumber: json['invoice_number'],
       userId: json['user_id'],
       totalAmount: (json['total_amount'] as num).toDouble(),
+      subtotalAmount: (json['subtotal_amount'] as num).toDouble(),
       deliveryCharge: (json['delivery_charge'] as num).toDouble(),
       specialBonus: (json['special_bonus'] as num).toDouble(),
       specialBonusPercentage:

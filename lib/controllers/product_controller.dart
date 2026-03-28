@@ -400,6 +400,22 @@ class ProductController extends GetxController {
     return total;
   }
 
+  num getTotal() {
+    num total = 0;
+    cart.forEach((product, quantity) {
+      total += (product.sellingPrice) * quantity;
+    });
+    return total;
+  }
+
+  num getTotalDiscount() {
+    num discount = 0;
+    cart.forEach((product, quantity) {
+      discount += (product.mrp - product.sellingPrice) * quantity;
+    });
+    return discount;
+  }
+
   int cartContains(ProductModel product) {
     return cart[product] ?? 0;
   }

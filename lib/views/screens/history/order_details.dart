@@ -253,7 +253,7 @@ class _OrderDetailsState extends State<OrderDetails> {
                           ),
                           Spacer(),
                           Text(
-                            "৳${widget.order.totalAmount.toStringAsFixed(2)}",
+                            "৳${widget.order.subtotalAmount.toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 14,
                               color:

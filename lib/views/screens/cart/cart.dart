@@ -246,7 +246,7 @@ class _CartState extends State<Cart> {
                         Spacer(),
                         Obx(
                           () => Text(
-                            "৳${prod.getSubTotal()}",
+                            "৳${prod.getSubTotal().toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 14,
                               color:
@@ -266,15 +266,41 @@ class _CartState extends State<Cart> {
                           ),
                         ),
                         Spacer(),
-                        Text(
-                          "৳${Get.find<ServiceController>().serviceInfo.value?.deliveryCharge.toInt() ?? "100"}",
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: Theme.of(context).textTheme.bodySmall?.color,
+                        Obx(
+                          () => Text(
+                            "৳${(Get.find<ServiceController>().serviceInfo.value?.deliveryCharge ?? 100).toStringAsFixed(2)}",
+                            style: TextStyle(
+                              fontSize: 14,
+                              color:
+                                  Theme.of(context).textTheme.bodySmall?.color,
+                            ),
                           ),
                         ),
                       ],
                     ),
+
+                    // Row(
+                    //   children: [
+                    //     Text(
+                    //       "discount".tr,
+                    //       style: TextStyle(
+                    //         fontSize: 14,
+                    //         color: Theme.of(context).textTheme.bodySmall?.color,
+                    //       ),
+                    //     ),
+                    //     Spacer(),
+                    //     Obx(
+                    //       () => Text(
+                    //         "- ৳${prod.getTotalDiscount().toStringAsFixed(2)}",
+                    //         style: TextStyle(
+                    //           fontSize: 14,
+                    //           color:
+                    //               Theme.of(context).textTheme.bodySmall?.color,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
                     Row(
                       children: [
                         Text(
@@ -288,7 +314,7 @@ class _CartState extends State<Cart> {
                         Spacer(),
                         Obx(
                           () => Text(
-                            "৳${prod.getSubTotal() + (Get.find<ServiceController>().serviceInfo.value?.deliveryCharge ?? 100)}",
+                            "৳${(prod.getTotal() + (Get.find<ServiceController>().serviceInfo.value?.deliveryCharge ?? 100)).toStringAsFixed(2)}",
                             style: TextStyle(
                               fontSize: 14,
                               color:
