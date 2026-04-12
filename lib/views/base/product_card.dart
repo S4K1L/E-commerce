@@ -14,6 +14,12 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final cardBorderColor =
+        theme.brightness == Brightness.dark
+            ? Colors.white.withValues(alpha: 0.16)
+            : const Color(0xFFD1D5DB);
+
     return GestureDetector(
       onTap: () {
         Get.to(() => ItemDetails(product: product));
@@ -27,11 +33,12 @@ class ProductCard extends StatelessWidget {
               Container(
                 width: 181,
                 decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
+                  color: theme.cardColor,
                   borderRadius: BorderRadius.circular(12),
+                  border: Border.all(color: cardBorderColor, width: 1),
                   boxShadow: [
                     BoxShadow(
-                      color: Theme.of(context).shadowColor,
+                      color: theme.shadowColor,
                       blurRadius: 8,
                       offset: Offset(0, 4),
                     ),
