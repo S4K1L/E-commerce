@@ -386,14 +386,17 @@ class _CartState extends State<Cart> {
                 }),
               ),
               const SizedBox(height: 50),
-              Obx(
-                () => CustomButton(
-                  text: "place_order".tr,
-                  isLoading: prod.isPlacingOrder.value,
-                  isDisabled: prod.cart.isEmpty,
-                  onTap: () => placeOrder(),
+              if (prod.cart.isNotEmpty) ...[
+                Obx(
+                  () => CustomButton(
+                    text: "place_order".tr,
+                    isLoading: prod.isPlacingOrder.value,
+                    isDisabled: prod.cart.isEmpty,
+                    onTap: () => placeOrder(),
+                  ),
                 ),
-              ),
+              ],
+
               const SizedBox(height: 50),
             ],
           ),

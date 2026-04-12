@@ -1,4 +1,5 @@
 import 'package:bdm/models/product_model.dart';
+import 'package:bdm/utils/product_grid_layout.dart';
 import 'package:bdm/views/base/custom_app_bar.dart';
 import 'package:bdm/views/base/show_product_cards.dart';
 import 'package:flutter/material.dart';
@@ -26,7 +27,12 @@ class SearchResult extends StatelessWidget {
                   style: TextStyle(fontSize: 16),
                 ),
               ),
-              Expanded(child: ShowProductCards(products: results)),
+              Expanded(
+                child: ShowProductCards(
+                  products: results,
+                  crossAxisCount: productGridCrossAxisCountForPlatform(),
+                ),
+              ),
             ],
           ),
         ),

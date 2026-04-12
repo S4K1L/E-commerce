@@ -1,6 +1,7 @@
 import 'package:bdm/controllers/product_controller.dart';
 import 'package:bdm/views/base/custom_app_bar.dart';
 import 'package:bdm/views/base/custom_loading.dart';
+import 'package:bdm/utils/product_grid_layout.dart';
 import 'package:bdm/views/base/show_product_cards.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -43,7 +44,10 @@ class _AllItemsState extends State<AllItems> {
               () =>
                   prod.isLoading.value
                       ? CustomLoading()
-                      : ShowProductCards(products: prod.items),
+                      : ShowProductCards(
+                        products: prod.items,
+                        crossAxisCount: productGridCrossAxisCountForPlatform(),
+                      ),
             ),
           ),
         ),

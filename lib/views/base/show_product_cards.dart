@@ -3,19 +3,26 @@ import 'package:bdm/views/base/product_card.dart';
 import 'package:flutter/material.dart';
 
 class ShowProductCards extends StatelessWidget {
-  const ShowProductCards({super.key, required this.products});
+  const ShowProductCards({
+    super.key,
+    required this.products,
+    this.crossAxisCount = 2,
+  });
 
   final List<ProductModel> products;
+
+  /// Number of product cards per row (e.g. 6 on web, 2 on typical mobile).
+  final int crossAxisCount;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
       padding: EdgeInsets.symmetric(vertical: 20),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // 2 cards per row
-        crossAxisSpacing: 12, // horizontal spacing
-        mainAxisSpacing: 12, // vertical spacing
-        childAspectRatio: 181 / 240, // adjust height vs width
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: crossAxisCount,
+        crossAxisSpacing: 12,
+        mainAxisSpacing: 12,
+        childAspectRatio: 181 / 240,
       ),
       itemCount: products.length,
       itemBuilder: (context, index) {
