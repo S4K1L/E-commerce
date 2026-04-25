@@ -23,7 +23,7 @@
     </queries>
     
     <application
-        android:label="BDM"
+        android:label="E-commerce"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
